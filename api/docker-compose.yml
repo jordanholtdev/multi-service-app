@@ -1,0 +1,19 @@
+services:
+  api:
+    networks:
+      - my_custom_network
+
+  nginx:
+    build:
+      context: ./nginx
+      dockerfile: Dockerfile
+    ports:
+      - '80:80'
+    depends_on:
+      - api
+    networks:
+      - my_custom_network
+
+networks:
+  my_custom_network:
+    external: true

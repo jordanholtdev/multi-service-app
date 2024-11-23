@@ -1,0 +1,19 @@
+version: "3.9"
+services:
+  mongodb:
+    image: mongo:latest
+    container_name: mongodb
+    ports:
+      - "27017:27017" # Map MongoDB port
+    volumes:
+      - ./mongo-data:/data/db # Persistent storage
+    environment:
+      MONGO_INITDB_DATABASE: bookInventory # Default database
+      MONGO_INITDB_ROOT_USERNAME: admin # Default admin user
+      MONGO_INITDB_ROOT_PASSWORD: admin123 # Default admin password
+    networks:
+      - my_custom_network
+
+networks:
+  my_custom_network:
+    external: true
